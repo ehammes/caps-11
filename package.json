@@ -1,0 +1,26 @@
+{
+  "name": "caps-11",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "lint": "eslint **/*.js",
+    "test": "jest --verbose --coverage",
+    "test-watch": "jest --watchAll --verbose --coverage"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ehammes/caps-11.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ehammes/caps-11/issues"
+  },
+  "homepage": "https://github.com/ehammes/caps-11#readme",
+  "dependencies": {
+    "jest": "^28.1.1"
+  }
+}
