@@ -11,8 +11,8 @@
 
 ### Links and Resources
 
-- [ci/cd](https://github.com/ehammes/caps-11/actions) (GitHub Actions)
-- [back-end server Heroku]() (Heroku) - TBD
+* [ci/cd](https://github.com/ehammes/caps-11/actions) (GitHub Actions)
+* [back-end server Heroku](https://cf-caps-11.herokuapp.com/) (Heroku)
 
 ### Setup
 
@@ -26,7 +26,8 @@ N/A
 
 #### UML Diagram
 
-![lab 11 uml](./src/img/lab_11.jpeg)
+![lab 11 uml](./src/img/lab11.jpg)
+
 #### Features / User Stories
 
 * The following user/developer stories detail the major functionality for this phase of the project.
