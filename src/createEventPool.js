@@ -1,7 +1,7 @@
-'use strict';
+// 'use strict';
 
-const Event = require('events');
+// const Event = require('events');
 
-const eventPool = new Event();
+// const eventPool = new Event();
 
-module.exports = eventPool;
+// module.exports = eventPool;

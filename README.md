@@ -1,13 +1,18 @@
-# LAB 11
+# LAB 11, 12
 
 ## Project: caps-11
 
 ### Author: Elizabeth Hammes
 
-### Problem Domain - Auth Module Lab 09 Project
+### Problem Domain
 
-* Begin the build of an application for a product called CAPS - The Code Academy Parcel Service. In this sprint, we’ll build out a system that emulates a real world supply chain. CAPS will simulate a delivery service where vendors (such a flower shops) will ship products using our delivery service and when our drivers deliver them, each vendor will be notified that their customers received what they purchased.
-* This will be an event driven application that “distributes” the responsibility for logging to separate modules, using only events to trigger logging based on activity.
+* Event Driven Applications (Lab11)
+  * Begin the build of an application for a product called CAPS - The Code Academy Parcel Service. In this sprint, we’ll build out a system that emulates a real world supply chain. CAPS will simulate a delivery service where vendors (such a flower shops) will ship products using our delivery service and when our drivers deliver them, each vendor will be notified that their customers received what they purchased.
+  * This will be an event driven application that “distributes” the responsibility for logging to separate modules, using only events to trigger logging based on activity.
+* Socket.io (lab12)
+  * Continue working on a multi-day build of our delivery tracking system, creating an event observable over a network with Socket.io.
+  * In this phase, we’ll be moving away from using Node Events for managing a pool of events, instead refactoring to using the Socket.io libraries. This allows communication between Server and Client applications.
+  * The intent here is to build the data services that would drive a suite of applications where we can see pickups and deliveries in real-time.
 
 ### Links and Resources
 
@@ -26,7 +31,7 @@ N/A
 
 #### UML Diagram
 
-![lab 11 uml](./src/img/lab11.jpg)
+![lab 12 uml](./src/img/lab12_uml.jpg)
 
 #### Features / User Stories
 
@@ -40,6 +45,7 @@ N/A
 * And as developers, here are some of the development stories that are relevant to the above.
   * As a developer, I want to use industry standards for managing the state of each package.
   * As a developer, I want to create an event driven system so that I can write code that happens in response to events, in real time.
+  * As a developer, I want to create network event driven system using Socket.io so that I can write code that responds to events originating from both servers and client applications
 
 #### Tests
 
