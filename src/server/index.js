@@ -14,11 +14,6 @@ const caps = server.of('/caps');
 caps.on('connection', (socket) => {
   console.log('Socket connected to caps namespace!', socket.id);
   
-  socket.on('PICKUP', (payload) => {
-    logEvent('PICKUP', payload);
-    socket.broadcast.emit('PICKUP', payload);
-    
-  });
   
   // Join a room
   socket.on('JOIN', (room) => {
@@ -26,13 +21,21 @@ caps.on('connection', (socket) => {
     socket.join(room);
   });
 
-  
-  socket.on('TRANSIT', (payload) => {
-    logEvent('TRANSIT', payload);
-    caps.emit('TRANSIT', payload);
+  // PICKUP
+  socket.on('PICKUP', (payload) => {
+    logEvent('PICKUP', payload);
+    caps.emit('PICKUP', payload);
     
   });
   
+  // TRANSIT
+  socket.on('TRANSIT', (payload) => {
+    logEvent('TRANSIT', payload);
+    caps.emit('TRANSIT', payload); //add .to for specific room/store
+    
+  });
+  
+  // DELIVERED
   socket.on('DELIVERED', (payload) => {
     logEvent('DELIVERED',payload);
     caps.emit('DELIVERED', payload);

@@ -9,13 +9,17 @@ const chance = new Chance();
 // Vendor alert for PICKUP
 socket.on('PICKUP', vendorPickupHandler);
 function vendorPickupHandler(payload) {
-  console.log(`From Vendor: package PICKUP ready for ${payload.store}`);
+  setTimeout(() => {
+    console.log(`From Vendor: package PICKUP ready for ${payload.store}`);
+  }, 1000);
 }
 
 // Vendor notified of DELIVERED
 socket.on('DELIVERED', vendorPackageDelivered);
-function vendorPackageDelivered (payload){
-  console.log(`Thank you, ${payload.customer}`);
+function vendorPackageDelivered(payload) {
+  setTimeout(() => {
+    console.log(`Thank you, ${payload.customer}`);
+  }, 1000);
 }
 
 const room = chance.company();
@@ -24,7 +28,7 @@ socket.emit('JOIN', room);
 setInterval(() => {
   const order = {
     store: chance.company(),
-    orderID: chance.integer({ min: 10000000, max: 100000000 }),
+    orderID: chance.guid(),
     customer: chance.name(),
     address: chance.city() + ', ' + chance.state(),
   };

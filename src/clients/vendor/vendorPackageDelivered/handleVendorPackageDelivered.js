@@ -9,5 +9,4 @@
 
 // }
 
-// // necessary for tests
 // module.exports = vendorPackageDelivered;
