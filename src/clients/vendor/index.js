@@ -18,7 +18,7 @@ function vendorPickupHandler(payload) {
 socket.on('DELIVERED', vendorPackageDelivered);
 function vendorPackageDelivered(payload) {
   setTimeout(() => {
-    console.log(`Thank you, ${payload.customer}`);
+    console.log(`Thank you for delivering ${payload.orderID}`);
   }, 1000);
 }
 
