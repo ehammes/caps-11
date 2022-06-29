@@ -5,11 +5,15 @@ const socket = io('http://localhost:3002/caps');
 const { vendorPickupHandler, vendorPackageDelivered } = require('../src/clients/vendor/index.js');
 const { driverPickupHandler, driverTransitHandler, driverPackageDelivered } = require('../src/clients/driver/index.js');
 
-//mock data
-jest.mock('../src/server/index.js', () => {
+//mock data - updated for socket.io
+jest.mock('socket.io-client', () => {
   return {
-    on: jest.fn(),
-    emit: jest.fn(),
+    io: jest.fn(() => {
+      return {
+        on: jest.fn(),
+        emit: jest.fn(),
+      };
+    }),
   };
 });
 
@@ -27,7 +31,7 @@ describe('Testing server / socket', () => {
       driverPickupHandler({ orderID: 123 });
 
       expect(console.log).toHaveBeenCalledWith('Driver, there is a package ready for PICKUP order# 123');
-      expect(socket.emit).toHaveBeenCalledWith('TRANSIT', { orderID: 123 });
+      expect(io.emit).toHaveBeenCalledWith('TRANSIT', { orderID: 123 });
 
     });
   }),

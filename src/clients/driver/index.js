@@ -6,24 +6,28 @@ const socket = io('http://localhost:3002/caps');
 // Driver PICKUP
 socket.on('PICKUP', driverPickupHandler);
 
-function driverPickupHandler (payload){
-  console.log(`Driver, there is a package ready for PICKUP order# ${payload.orderID}`);
-  socket.emit('TRANSIT', payload);
+function driverPickupHandler(payload) {
+  setTimeout(() => {
+    console.log(`Driver, there is a package ready for PICKUP order# ${payload.orderID}`);
+    socket.emit('TRANSIT', payload);
+  }, 1000);
 }
 
 // Driver TRANSIT
 socket.on('TRANSIT', driverTransitHandler);
-
-function driverTransitHandler (payload){
-  console.log(`Package in TRANSIT for order# ${payload.orderID}`);
-  socket.emit('DELIVERED', payload);
+function driverTransitHandler(payload) {
+  setTimeout(() => {
+    console.log(`Package in TRANSIT for order# ${payload.orderID}`);
+    socket.emit('DELIVERED', payload);
+  }, 1000);
 }
 
 // Driver DELIVERED
 socket.on('DELIVERED', driverPackageDelivered);
-
-function driverPackageDelivered (payload){
-  console.log(`Package DELIVERED for order# ${payload.orderID}`);
+function driverPackageDelivered(payload) {
+  setTimeout(() => {
+    console.log(`Package DELIVERED for order# ${payload.orderID}`);
+  }, 1000);
 }
 
 module.exports = { driverPickupHandler, driverTransitHandler, driverPackageDelivered };
