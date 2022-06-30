@@ -1,11 +1,11 @@
 'use strict';
 
-const eventPool = require('../src/createEventPool');
-const vendorPickupHandler = require('../src/packagePickup/handleVendorPackagePickup');
-const driverPickupHandler = require('../src/packagePickup/handleDriverPackagePickup');
-const driverTransitHandler = require('../src/packageTransit/handleDriverPackageTransit');
-const driverPackageDelivered = require('../src/packageDelivered/handleDriverPackageDelivered');
-const vendorPackageDelivered = require('../src/packageDelivered/handleVendorPackageDelivered');
+const eventPool = require('../src/archived/createEventPool');
+const vendorPickupHandler = require('../src/queue-clients/archived/vendor/vendorPackagePickup/handleVendorPackagePickup');
+const driverPickupHandler = require('../src/queue-clients/archived/driver/packagePickup/handleDriverPackagePickup');
+const driverTransitHandler = require('../src/queue-clients/archived/driver/packageTransit/handleDriverPackageTransit');
+const driverPackageDelivered = require('../src/queue-clients/archived/driver/packageDelivered/handleDriverPackageDelivered');
+const vendorPackageDelivered = require('../src/queue-clients/archived/vendor/vendorPackageDelivered/handleVendorPackageDelivered');
 
 //mock data
 jest.mock('../src/createEventPool', () => {
