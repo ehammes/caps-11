@@ -2,8 +2,8 @@
 
 const { io } = require('socket.io-client');
 const socket = io('http://localhost:3002/caps');
-const { vendorPickupHandler, vendorPackageDelivered } = require('../src/clients/vendor/index.js');
-const { driverPickupHandler, driverTransitHandler, driverPackageDelivered } = require('../src/clients/driver/index.js');
+const { vendorPickupHandler, vendorPackageDelivered } = require('../src/queue-clients/archived/vendor/index.js');
+const { driverPickupHandler, driverTransitHandler, driverPackageDelivered } = require('../src/queue-clients/archived/driver/index.js');
 
 //mock data - updated for socket.io
 jest.mock('socket.io-client', () => {
