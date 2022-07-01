@@ -1,7 +1,7 @@
 'use strict';
 
 const { Server } = require('socket.io');
-const PORT = process.env.PORT || 3002;
+const PORT = 3001;
 const Queue = require('./lib/queue');
 
 // instance of a listening event server at PORT
@@ -9,7 +9,6 @@ const server = new Server(PORT);
 
 // Namespace
 const caps = server.of('/caps');
-
 const capsQueue = new Queue();
 
 
@@ -23,6 +22,7 @@ caps.on('connection', (socket) => {
 
   // Join a room
   socket.on('JOIN', (queueID) => {
+    console.log(`joined the ${queueID} room`);
     socket.join(queueID);
     socket.emit('JOIN', queueID);
   });
@@ -34,7 +34,7 @@ caps.on('connection', (socket) => {
       let queueKey = capsQueue.store(payload.queueID, new Queue());
       currentQueue = capsQueue.read(queueKey);
     }
-    currentQueue.store(payload.messageID, payload); // need to change
+    currentQueue.store(payload.messageID, payload);
     caps.emit('PICKUP', payload);
   });
 
@@ -45,7 +45,7 @@ caps.on('connection', (socket) => {
       let queueKey = capsQueue.store(payload.queueID, new Queue());
       currentQueue = capsQueue.read(queueKey);
     }
-    currentQueue.store(payload.messageID, payload); 
+    currentQueue.store(payload.messageID, payload);
     caps.emit('TRANSIT', payload);
   });
 
@@ -54,29 +54,25 @@ caps.on('connection', (socket) => {
     let currentQueue = capsQueue.read(payload.queueID);
     if (!currentQueue) {
       let queueKey = capsQueue.store(payload.queueID, new Queue());
-      currentQueue = capsQueue.read(queueKey);
+      currentQueue = capsQueue.remove(queueKey);
     }
-    currentQueue.store(payload.messageID, payload);
-    caps.emit('DELIVERED', payload);
+    let message = currentQueue.remove(payload.messageID);
+    caps.emit('DELIVERED', message);
 
   });
 
-  // RECEIVED
+  // RECEIVED ** new event for lab13
   socket.on('RECEIVED', (payload) => {
-    let currentQueue = capsQueue.read(payload.queueID);
+    let currentQueue = capsQueue.read(payload.order.queueID);
     if (!currentQueue) {
       throw new Error('no queue exists');
     }
-    let messageID = currentQueue.remove(payload.messageID);
-    caps.to(payload.queueID).emit('RECEIVED', messageID);
+    Object.keys(currentQueue.data).forEach(queueItem => {
+      console.log('get all happens', queueItem);
+      let message = currentQueue.remove(payload.messageID);
+      caps.to(payload.queueID).emit('RECEIVED', message);
+
+    });
 
   });
-
-  // socket.on('GET_ALL_MESSAGES', (payload) => {
-  //   let currentQueue = capsQueue.read(payload.queueID);
-  //   Object.keys(currentQueue.data).forEach(messageID => {
-  //     caps.emit('RECEIVED', currentQueue.read(messageID));
-  //   });
-  // });
-
 });

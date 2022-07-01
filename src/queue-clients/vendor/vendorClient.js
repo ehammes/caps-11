@@ -1,13 +1,13 @@
 'use strict';
 
 const { io } = require('socket.io-client');
-const SOCKET_URL = process.env.SOCKET_URL || 'http://localhost:3002/caps';
+const SOCKET_URL = 'http://localhost:3001/caps';
 
-class MessageClient {
+class VendorClient {
   constructor(queueID){
     this.queueID = queueID;
     this.socket = io(SOCKET_URL);
-    this.socket.emit('JOIN', {queueID});
+    this.socket.emit('JOIN', queueID);
     this.socket.on('JOIN', (id) => {
       console.log('Joined client queue', id);
     });
@@ -22,4 +22,4 @@ class MessageClient {
   }
 }
 
-module.exports = MessageClient;
+module.exports = VendorClient;
